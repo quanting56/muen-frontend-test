@@ -7,11 +7,20 @@
       </div>
     </header>
 
-    <main>Dashboard Content（待補）</main>
+    <main>
+      <div>Dashboard Content（待補）</div>
+      <button
+        @click="isModalOpen = true"
+        class="px-2 py-1 rounded-full border border-orange-400 cursor-pointer hover:bg-amber-400"
+      >打開遮罩</button>
+    </main>
 
     <!-- Modal -->
     <Teleport to="body">
-      <div class="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-6">
+      <div
+        class="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-6"
+        :class="isModalOpen ? 'block' : 'hidden'"  
+      >
         <div class="w-full max-w-6xl bg-neutral-50 rounded-2xl shadow-xl overflow-auto">
           <section class="rounded-2xl border border-neutral-200 bg-white shadow-sm p-4">
             <div class="flex items-end justify-between gap-4 mb-4">
@@ -19,7 +28,10 @@
                 <h1 class="text-4xl font-semibold tracking-tight text-orange-500">Analytics</h1>
               </div>
   
-              <ModeToggle v-model="mode" />
+              <div>
+                <ModeToggle v-model="mode" />
+                <button @click="isModalOpen = false">✕</button>
+              </div>
             </div>
   
             <div class="overflow-auto bg-white">
@@ -97,7 +109,7 @@
           </section>
         </div>
       
-        <ChartModal :open="isModalOpen" :lab="selected" @close="closeChart" />
+        <!-- <ChartModal :open="isModalOpen" :lab="selected" @close="closeChart" /> -->
       </div>
     </Teleport>
   </div>
@@ -118,11 +130,10 @@ import { getAllDates, buildRecordMap, toSeries } from "./utils/labs";
 const labs = ref(mock.data ?? []);
 const mode = ref("table");
 
+const isModalOpen = ref(true);
+
 const allDates = computed(() => getAllDates(labs.value));
 const recordMap = computed(() => buildRecordMap(labs.value));
-
-const selected = ref(null);
-const isModalOpen = computed(() => !!selected.value);
 
 function openChart(lab) {
   selected.value = lab;
