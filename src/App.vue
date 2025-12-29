@@ -12,7 +12,9 @@
       <button
         @click="isModalOpen = true"
         class="px-2 py-1 rounded-full border border-orange-400 cursor-pointer hover:bg-amber-400"
-      >打開遮罩</button>
+      >
+        打開遮罩
+      </button>
     </main>
 
     <!-- Modal -->
@@ -30,7 +32,10 @@
   
               <div>
                 <ModeToggle v-model="mode" />
-                <button @click="isModalOpen = false">✕</button>
+                <button
+                  @click="isModalOpen = false"
+                  class="mx-4 text-xl cursor-pointer text-gray-500 hover:text-black"
+                >✕</button>
               </div>
             </div>
   
@@ -86,7 +91,11 @@
                     </template>
 
                     <template v-if="mode === 'chart'">
-                      <LabChartList :lab="lab" :all-dates="allDates" />
+                      <LabChartList
+                        :lab="lab"
+                        :all-dates="allDates"
+                        :expanded="expandedLabCode === lab.lab_code"
+                      />
                     </template>
                   
                     <td
@@ -95,8 +104,9 @@
                     >
                       <button
                         class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-orange-400 hover:bg-orange-400/50 cursor-pointer"
-                        @click="openChart(lab)"
-                        title="Expand"
+                        :class="expandedLabCode === lab.lab_code ? 'bg-orange-500 text-white' : 'bg-orange-400 hover:bg-orange-400/50'"
+                        @click="toggleExpand(lab)"
+                        :title="expandedLabCode === lab.lab_code ? 'Collapse' : 'Expand'"
                       >
                         🔍
                       </button>
@@ -116,13 +126,13 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 
 import mock from "./data/mock_data.json";
 import ModeToggle from "./components/ModeToggle.vue";
 import LabTable from "./components/LabTable.vue";
 import LabChartList from "./components/LabChartList.vue";
-import ChartModal from "./components/ChartModal.vue";
+// import ChartModal from "./components/ChartModal.vue";
 import Sparkline from "./components/Sparkline.vue";
 
 import { getAllDates, buildRecordMap, toSeries } from "./utils/labs";
@@ -135,10 +145,20 @@ const isModalOpen = ref(true);
 const allDates = computed(() => getAllDates(labs.value));
 const recordMap = computed(() => buildRecordMap(labs.value));
 
-function openChart(lab) {
-  selected.value = lab;
+const expandedLabCode = ref(null);
+
+function toggleExpand(lab) {
+  expandedLabCode.value = expandedLabCode.value === lab.lab_code ? null : lab.lab_code;
 }
-function closeChart() {
-  selected.value = null;
-}
+
+watch(mode, (m) => {
+  if (m !== "chart") expandedLabCode.value = null;
+});
+
+// function openChart(lab) {
+//   selected.value = lab;
+// }
+// function closeChart() {
+//   selected.value = null;
+// }
 </script>
