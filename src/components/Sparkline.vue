@@ -1,6 +1,14 @@
 <template>
   <svg :width="width" :height="height" viewBox="0 0 70 26" class="opacity-90">
-    <polyline v-if="points" :points="points" fill="none" stroke="currentColor" stroke-width="2" />
+    <polyline
+      v-if="points"
+      :points="points"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
   </svg>
 </template>
 

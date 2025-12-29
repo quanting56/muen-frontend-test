@@ -1,15 +1,15 @@
 <template>
-  <div class="inline-flex rounded-full bg-neutral-100 p-1">
+  <div class="inline-flex rounded-full bg-orange-500 p-1">
     <button
-      class="px-3 py-1.5 text-sm rounded-full"
-      :class="modelValue === 'chart' ? 'bg-white shadow' : 'text-neutral-500'"
+      class="px-3 py-1 font-bold rounded-full"
+      :class="modelValue === 'chart' ? 'bg-white/80 shadow text-orange-500' : 'text-white'"
       @click="emit('update:modelValue', 'chart')"
     >
       Chart
     </button>
     <button
-      class="px-3 py-1.5 text-sm rounded-full"
-      :class="modelValue === 'table' ? 'bg-white shadow' : 'text-neutral-500'"
+      class="px-3 py-1 font-bold rounded-full"
+      :class="modelValue === 'table' ? 'bg-white/80 shadow text-orange-500' : 'text-white'"
       @click="emit('update:modelValue', 'table')"
     >
       Table

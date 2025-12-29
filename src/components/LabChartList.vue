@@ -25,7 +25,7 @@
         </div>
 
         <button
-          class="inline-flex items-center justify-center w-10 h-10 rounded-full border hover:bg-neutral-50"
+          class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-orange-400 hover:bg-orange-400/50 cursor-pointer"
           @click="emit('open-chart', lab)"
           title="Expand"
         >

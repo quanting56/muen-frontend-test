@@ -1,30 +1,45 @@
 <template>
-  <div class="min-h-screen bg-neutral-50">
-    <div class="max-w-6xl mx-auto px-6 py-8">
-      <div class="flex items-end justify-between gap-4 mb-4">
-        <div>
-          <h1 class="text-5xl font-black tracking-tight">Analytics</h1>
-          <div class="text-sm text-neutral-500 mt-2">Lab results overview</div>
+  <div>
+    <header class="bg-white border-b border-neutral-200">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-baseline gap-4">
+        <span class="text-4xl font-black tracking-tight text-orange-600">Hopes</span>
+        <span class="text-3xl text-neutral-900">Patient Journey</span>
+      </div>
+    </header>
+
+    <main>Dashboard Content（待補）</main>
+
+    <!-- Modal -->
+    <Teleport to="body">
+      <div class="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-6">
+        <div class="w-full max-w-6xl bg-neutral-50 rounded-2xl shadow-xl overflow-hidden">
+          <section class="rounded-2xl border border-neutral-200 bg-white shadow-sm p-4">
+            <div class="flex items-end justify-between gap-4 mb-4">
+              <div>
+                <h1 class="text-4xl font-semibold tracking-tight text-neutral-900">Analytics</h1>
+              </div>
+  
+              <ModeToggle v-model="mode" />
+            </div>
+  
+            <div v-if="mode === 'table'">
+              <LabTable
+                :labs="labs"
+                :all-dates="allDates"
+                :record-map="recordMap"
+                @open-chart="openChart"
+              />
+            </div>
+          
+            <div v-else>
+              <LabChartList :labs="labs" @open-chart="openChart" />
+            </div>
+          </section>
         </div>
-
-        <ModeToggle v-model="mode" />
+      
+        <ChartModal :open="isModalOpen" :lab="selected" @close="closeChart" />
       </div>
-
-      <div v-if="mode === 'table'">
-        <LabTable
-          :labs="labs"
-          :all-dates="allDates"
-          :record-map="recordMap"
-          @open-chart="openChart"
-        />
-      </div>
-
-      <div v-else>
-        <LabChartList :labs="labs" @open-chart="openChart" />
-      </div>
-    </div>
-
-    <ChartModal :open="isModalOpen" :lab="selected" @close="closeChart" />
+    </Teleport>
   </div>
 </template>
 
