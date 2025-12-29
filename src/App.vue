@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 底頁 header -->
     <header class="bg-white border-b border-neutral-200">
       <div class="max-w-6xl mx-auto px-6 py-4 flex items-baseline gap-4">
         <span class="text-4xl font-black tracking-tight text-orange-600">Hopes</span>
@@ -7,6 +8,7 @@
       </div>
     </header>
 
+    <!-- 底頁主內容 -->
     <main class="p-3">
       <div class="text-xl">Dashboard Content</div>
       <button
@@ -17,7 +19,8 @@
       </button>
     </main>
 
-    <!-- Modal -->
+
+    <!-- Analytics Modal -->
     <Teleport to="body">
       <div
         class="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-6"
@@ -147,10 +150,9 @@
 
           </section>
         </div>
-      
-        <!-- <ChartModal :open="isModalOpen" :lab="selected" @close="closeChart" /> -->
       </div>
     </Teleport>
+    
   </div>
 </template>
 
