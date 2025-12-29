@@ -24,7 +24,7 @@
         :class="isModalOpen ? 'block' : 'hidden'"  
       >
         <div class="w-full max-w-6xl bg-neutral-50 rounded-2xl shadow-xl overflow-auto">
-          <section class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
+          <section class="pr-2 pb-2 rounded-2xl border border-neutral-200 bg-white shadow-sm">
             <div class="flex items-center justify-between gap-4 mb-4">
               <div class="px-4 pt-4 flex items-center gap-4">
                 <h1 class="text-4xl font-semibold tracking-tight text-orange-500">Analytics</h1>
@@ -43,7 +43,7 @@
             </div>
   
             <div class="overflow-auto bg-white">
-              <table class="min-w-225 w-full text-sm border-collapse">
+              <table class="min-w-full w-full text-sm border-collapse">
                 <thead class="bg-neutral-500">
                   <tr>
                     <th class="px-3 py-2 text-white w-30 border-b">Trend</th>
@@ -116,6 +116,32 @@
                     </td>
                   </tr>
                 </tbody>
+
+                <tfoot v-if="mode === 'table'">
+                  <tr>
+                    <!-- 左邊三欄 -->
+                    <td class="sticky bottom-0 z-10 px-3 py-2"></td> <!-- Trend -->
+                    <td class="sticky bottom-0 z-10 px-3 py-2"></td> <!-- Name -->
+                    <td class="sticky bottom-0 z-10 px-3 py-2"></td> <!-- Unit -->
+                  
+                    <!-- 日期欄 -->
+                    <td
+                      v-for="d in allDates"
+                      :key="'date-footer-' + d"
+                      class="sticky bottom-0 z-10 bg-neutral-100 border border-gray-300 text-center"
+                      style="min-width: 56px;"
+                    >
+                      <div class="leading-tight py-1">
+                        <div class="text-[11px] text-neutral-700 tabular-nums">
+                          {{ formatMD(d) }}
+                        </div>
+                        <div class="text-[10px] text-neutral-400 tabular-nums">
+                          {{ formatY(d) }}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tfoot>
               </table>
             </div>
 
@@ -178,4 +204,15 @@ function toggleExpand(lab) {
 watch(mode, (m) => {
   if (m !== "chart") expandedLabCode.value = null;
 });
+
+function formatMD(iso) {
+  const [, m, d] = (iso ?? "").split("-");
+  if (!m || !d) return iso;
+  return `${Number(m)}/${Number(d)}`; // 去掉前導 0
+}
+
+function formatY(iso) {
+  const [y] = (iso ?? "").split("-");
+  return y ?? "";
+}
 </script>

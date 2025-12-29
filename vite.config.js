@@ -8,5 +8,5 @@ export default defineConfig({
     vue(),
     tailwindcss()
   ],
-  base: "/muen-exam-frontend/",
+  base: "/muen-frontend-test/",
 });

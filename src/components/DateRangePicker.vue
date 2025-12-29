@@ -4,7 +4,7 @@
     <!-- trigger -->
     <button
       type="button"
-      class="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-sm shadow-sm hover:bg-neutral-50"
+      class="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-sm shadow-sm hover:bg-neutral-50 cursor-pointer"
       @click="open = !open"
       :disabled="!allDates.length"
       :title="allDates.length ? 'Select range' : 'No data'"
@@ -30,11 +30,11 @@
         :title="'Adjust range'"
       >
         <!-- base track -->
-        <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[3px] rounded-full bg-neutral-200"></div>
+        <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-0.75 rounded-full bg-neutral-200"></div>
 
         <!-- selected range -->
         <div
-          class="absolute top-1/2 -translate-y-1/2 h-[3px] rounded-full bg-orange-400"
+          class="absolute top-1/2 -translate-y-1/2 h-0.75 rounded-full bg-orange-400"
           :style="{ left: `${startPct * 100}%`, width: `${Math.max(0, (endPct - startPct) * 100)}%` }"
         ></div>
 
