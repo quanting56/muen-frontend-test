@@ -50,8 +50,8 @@
             >
               <!-- tooltip -->
               <div
-                class="pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2
-                       rounded-md bg-white px-2 py-1 text-xs shadow border
+                class="pointer-events-none absolute top-4 left-1/2 -translate-x-1/2
+                       rounded-md bg-white px-2 py-1 text-xs shadow shadow-gray-300 text-nowrap
                        opacity-0 group-hover:opacity-100 transition"
               >
                 {{ d }}

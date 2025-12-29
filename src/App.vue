@@ -7,11 +7,11 @@
       </div>
     </header>
 
-    <main>
-      <div>Dashboard Content（待補）</div>
+    <main class="p-3">
+      <div class="text-xl">Dashboard Content</div>
       <button
         @click="isModalOpen = true"
-        class="px-2 py-1 rounded-full border border-orange-400 cursor-pointer hover:bg-amber-400"
+        class="px-2 py-1 mt-2 rounded-full border border-orange-400 cursor-pointer hover:bg-amber-400"
       >
         打開遮罩
       </button>
@@ -24,10 +24,13 @@
         :class="isModalOpen ? 'block' : 'hidden'"  
       >
         <div class="w-full max-w-6xl bg-neutral-50 rounded-2xl shadow-xl overflow-auto">
-          <section class="rounded-2xl border border-neutral-200 bg-white shadow-sm p-4">
-            <div class="flex items-end justify-between gap-4 mb-4">
-              <div>
+          <section class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
+            <div class="flex items-center justify-between gap-4 mb-4">
+              <div class="px-4 pt-4 flex items-center gap-4">
                 <h1 class="text-4xl font-semibold tracking-tight text-orange-500">Analytics</h1>
+
+                <!-- 日期範圍選擇器（顯示 label + timeline + popover） -->
+                <DateRangePicker v-model="dateRange" :all-dates="allDatesAll" />
               </div>
   
               <div>
@@ -129,10 +132,11 @@
 import { ref, computed, watch } from "vue";
 
 import mock from "./data/mock_data.json";
+
+import DateRangePicker from "./components/DateRangePicker.vue";
 import ModeToggle from "./components/ModeToggle.vue";
 import LabTable from "./components/LabTable.vue";
 import LabChartList from "./components/LabChartList.vue";
-// import ChartModal from "./components/ChartModal.vue";
 import Sparkline from "./components/Sparkline.vue";
 
 import { getAllDates, buildRecordMap, toSeries } from "./utils/labs";
@@ -142,7 +146,27 @@ const mode = ref("table");
 
 const isModalOpen = ref(true);
 
-const allDates = computed(() => getAllDates(labs.value));
+const allDatesAll = computed(() => getAllDates(labs.value)); // 全部日期（資料全集）
+
+// date range state（預設 null 代表用全範圍）
+const dateRange = ref({ start: null, end: null });
+
+// 依 dateRange 過濾 dates（字串 YYYY-MM-DD 可直接比大小）
+const allDates = computed(() => {
+  const dates = allDatesAll.value ?? [];
+  if (!dates.length) return [];
+
+  let start = dateRange.value?.start || dates[0];
+  let end = dateRange.value?.end || dates.at(-1);
+  if (start > end) [start, end] = [end, start];
+  // clamp
+  if (start < dates[0]) start = dates[0];
+  if (end > dates.at(-1)) end = dates.at(-1);
+
+  const filtered = dates.filter((d) => d >= start && d <= end);
+  return filtered.length ? filtered : dates;
+});
+
 const recordMap = computed(() => buildRecordMap(labs.value));
 
 const expandedLabCode = ref(null);
@@ -154,11 +178,4 @@ function toggleExpand(lab) {
 watch(mode, (m) => {
   if (m !== "chart") expandedLabCode.value = null;
 });
-
-// function openChart(lab) {
-//   selected.value = lab;
-// }
-// function closeChart() {
-//   selected.value = null;
-// }
 </script>
