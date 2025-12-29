@@ -1,0 +1,191 @@
+{
+    "success": true,
+    "data": [
+      {
+        "lab_code": "72-523",
+        "lab_name_ch": "磷",
+        "lab_name_en": "P(Phosphorus)",
+        "lab_unit": "mg/dL",
+        "records": [
+          {
+            "lab_date": "2024-09-25",
+            "lab_value": "4.4",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2024-12-25",
+            "lab_value": "4.1",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2025-03-17",
+            "lab_value": "4.5",
+            "abnormal": null
+          }
+        ]
+      },
+      {
+        "lab_code": "72-521",
+        "lab_name_ch": "鈣",
+        "lab_name_en": "Calcium",
+        "lab_unit": "mg/dL",
+        "records": [
+          {
+            "lab_date": "2024-09-25",
+            "lab_value": "8.7",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2024-12-25",
+            "lab_value": "8.8",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2025-03-11",
+            "lab_value": "8.3",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2025-03-14",
+            "lab_value": "8.1",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2025-03-17",
+            "lab_value": "8.1",
+            "abnormal": null
+          }
+        ]
+      },
+      {
+        "lab_code": "72-526",
+        "lab_name_ch": "鉀",
+        "lab_name_en": "K",
+        "lab_unit": "mEq/L",
+        "records": [
+          {
+            "lab_date": "2024-09-25",
+            "lab_value": "3.9",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2024-12-25",
+            "lab_value": "3.7",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2025-03-03",
+            "lab_value": "3.6",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2025-03-06",
+            "lab_value": "3.2",
+            "abnormal": "L"
+          },
+          {
+            "lab_date": "2025-03-11",
+            "lab_value": "4.3",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2025-03-14",
+            "lab_value": "4.4",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2025-03-17",
+            "lab_value": "4.5",
+            "abnormal": null
+          }
+        ]
+      },
+      {
+        "lab_code": "72-525",
+        "lab_name_ch": "鈉",
+        "lab_name_en": "Na",
+        "lab_unit": "mEq/L",
+        "records": [
+          {
+            "lab_date": "2024-09-25",
+            "lab_value": "136",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2024-12-25",
+            "lab_value": "136",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2025-03-03",
+            "lab_value": "128",
+            "abnormal": "L"
+          },
+          {
+            "lab_date": "2025-03-06",
+            "lab_value": "128",
+            "abnormal": "L"
+          },
+          {
+            "lab_date": "2025-03-11",
+            "lab_value": "134",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2025-03-14",
+            "lab_value": "132",
+            "abnormal": "L"
+          },
+          {
+            "lab_date": "2025-03-17",
+            "lab_value": "131",
+            "abnormal": "L"
+          }
+        ]
+      },
+      {
+        "lab_code": "72A380",
+        "lab_name_ch": "血清鐵含量",
+        "lab_name_en": "Serum iron",
+        "lab_unit": "ug/dL",
+        "records": [
+          {
+            "lab_date": "2024-12-25",
+            "lab_value": "65.0",
+            "abnormal": null
+          }
+        ]
+      },
+      {
+        "lab_code": "72-347",
+        "lab_name_ch": "鋅",
+        "lab_name_en": "Zn",
+        "lab_unit": "ug/dL",
+        "records": [
+          {
+            "lab_date": "2024-12-25",
+            "lab_value": "74.4",
+            "abnormal": null
+          }
+        ]
+      },
+      {
+        "lab_code": "72-527",
+        "lab_name_ch": "氯",
+        "lab_name_en": "Cl",
+        "lab_unit": "mEq/L",
+        "records": [
+          {
+            "lab_date": "2025-03-14",
+            "lab_value": "105",
+            "abnormal": null
+          },
+          {
+            "lab_date": "2025-03-17",
+            "lab_value": "103",
+            "abnormal": null
+          }
+        ]
+      }
+    ]
+  }
